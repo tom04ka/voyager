@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7faf9;
+  --surface: #ffffff;
+  --surface-muted: #eef3f2;
+  --foreground: #16211f;
+  --muted: #5c6b69;
+  --border: #e3eae8;
+  --brand: #0f8b7e;
+  --brand-strong: #0b6f65;
+  --brand-soft: #dcf0ec;
+  --accent: #4f8cc9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a1211;
+    --surface: #101a18;
+    --surface-muted: #16211f;
+    --foreground: #e9efed;
+    --muted: #93a3a0;
+    --border: #22302d;
+    --brand: #2fd4c0;
+    --brand-strong: #63e0d1;
+    --brand-soft: #14302c;
+    --accent: #7db4e8;
+  }
+}
+
+/*
+ * Register the tokens with Tailwind. `inline` means the generated utilities
+ * reference the CSS variable directly, so they respond to the dark-mode
+ * override above without needing a `dark:` variant on every element.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
