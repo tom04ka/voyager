@@ -1,65 +1,42 @@
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
+import { StarBadge } from "@/components/ui/star-badge";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <div className="absolute -top-32 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-brand-soft blur-3xl" />
-        <div className="absolute top-40 -right-24 h-96 w-96 rounded-full bg-brand-soft/60 blur-3xl" />
+    <section className="relative overflow-hidden px-4 pb-16 pt-10 sm:pb-24 sm:pt-14">
+      <StarBadge
+        label="Kyoto"
+        className="absolute left-[5%] top-[34%] hidden h-28 w-28 -rotate-12 lg:grid"
+      />
+      <StarBadge
+        label="a tropical island"
+        className="absolute right-[6%] top-[26%] hidden h-32 w-32 rotate-12 lg:grid"
+      />
+      <div aria-hidden className="pointer-events-none hidden select-none lg:block">
+        <span className="absolute right-[22%] top-[58%] text-4xl rotate-12">🧳</span>
+        <span className="absolute left-[16%] top-[64%] text-3xl">🗺️</span>
       </div>
 
-      <Container className="flex flex-col items-center gap-10 py-24 text-center sm:py-32">
-
-        <h1 className="max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-          Travel planning that feels like a{" "}
-          <span className="text-brand">deep breath</span>.
+      <Container className="relative flex flex-col items-center gap-7 text-center">
+        <h1 className="font-display max-w-5xl text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+          Voyager plans the whole trip.
+          <br className="hidden sm:block" /> You just{" "}
+          <span className="marker">show up</span>. 
         </h1>
 
         <p className="max-w-xl text-balance text-lg leading-8 text-muted">
-          Tell Voyager where you're dreaming of. In seconds you'll have a calm,
-          day-by-day itinerary shaped around your pace, your budget, and the
-          things you actually love.
+          Tell us where you're dreaming of and how you like to travel. We'll
+          hand you a warm, day-by-day plan. Not 40 open browser tabs.
         </p>
 
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/plan" size="lg">
+        <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="/plan" variant="secondary" size="lg">
             Plan my trip
           </ButtonLink>
-          <ButtonLink href="/itinerary" size="lg" variant="secondary">
-            See a sample
+          <ButtonLink href="/itinerary" variant="secondary" size="lg">
+            Peek at a sample
           </ButtonLink>
-        </div>
-
-        <div className="mt-8 w-full max-w-md rounded-3xl border border-border bg-surface/90 p-2 text-left shadow-sm backdrop-blur">
-          <div className="rounded-2xl bg-surface-muted p-5">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted">
-              Day 1 · Lisbon
-            </p>
-            <ul className="mt-3 space-y-3 text-sm">
-              <li className="flex items-start gap-3">
-                <span className="mt-0.5">☕</span>
-                <span>
-                  <span className="font-medium">Coffee in Alfama</span>
-                  <span className="block text-muted">
-                    Ease in with a pastel de nata.
-                  </span>
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-0.5">🌅</span>
-                <span>
-                  <span className="font-medium">Sunset at São Jorge</span>
-                  <span className="block text-muted">
-                    Golden hour over the rooftops.
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
         </div>
       </Container>
     </section>

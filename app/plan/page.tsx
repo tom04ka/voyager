@@ -20,14 +20,13 @@ const interests = [
 
 export default function PlanPage() {
   return (
-    <Container className="py-16 sm:py-24">
+    <Container className="py-16">
       <div className="mx-auto max-w-2xl">
-        <span className="text-sm font-medium text-brand">Plan a trip</span>
         <h1 className="mt-2 text-4xl font-semibold tracking-tight">
           Let's shape your trip
         </h1>
         <p className="mt-3 text-lg text-muted">
-          A few quick questions — Voyager handles the rest. (This is a mocked
+          A few quick questions - Voyager handles the rest. (This is a mocked
           preview; nothing is saved yet.)
         </p>
 

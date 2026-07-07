@@ -1,56 +1,122 @@
 @import "tailwindcss";
 
+/*
+ * "Handmade poster" palette — warm paper on a dark frame, chunky ink, and
+ * candy accents (bubblegum pink, lime green, a highlighter, a star). The tokens
+ * below are the LIGHT theme; the `prefers-color-scheme: dark` block overrides
+ * the neutrals for dark mode while the candy accents stay bright in both.
+ */
 :root {
-  --background: #f7faf9;
-  --surface: #ffffff;
-  --surface-muted: #eef3f2;
-  --foreground: #16211f;
-  --muted: #5c6b69;
-  --border: #e3eae8;
-  --brand: #0f8b7e;
-  --brand-strong: #0b6f65;
-  --brand-soft: #dcf0ec;
-  --accent: #4f8cc9;
-}
+  --page: #1e1b18; /* deep warm charcoal frame — dark, but softer than near-black */
+  --background: #f6f1e6; /* the cream "paper" */
+  --surface: #fffdf7; /* cards on the paper */
+  --surface-muted: #efe7d3;
+  --foreground: #1c1712; /* warm near-black ink */
+  --muted: #7a7164;
+  --border: #e6dcc4;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a1211;
-    --surface: #101a18;
-    --surface-muted: #16211f;
-    --foreground: #e9efed;
-    --muted: #93a3a0;
-    --border: #22302d;
-    --brand: #2fd4c0;
-    --brand-strong: #63e0d1;
-    --brand-soft: #14302c;
-    --accent: #7db4e8;
-  }
+  /* Fixed dark ink for text/numbers that sit ON a bright candy color (badges,
+     the pink CTA panel). It must NOT flip in dark mode, or it would vanish. */
+  --ink: #241c14;
+
+  /* brand accents used by /plan and /itinerary */
+  --brand: #b0286f;
+  --brand-strong: #86164f;
+  --brand-soft: #ffd7ef;
+  --accent: #8ccf3f;
+
+  /* playful candy accents used by the landing */
+  --pink: #ffc7ee;
+  --pink-2: #dcb4ff;
+  --green: #c6f26e;
+  --green-2: #a6e84a;
+  --highlight: #b6ff3d;
+  --star: #ffc7ee;
+  --glow: #ffe14a;
 }
 
 /*
- * Register the tokens with Tailwind. `inline` means the generated utilities
- * reference the CSS variable directly, so they respond to the dark-mode
- * override above without needing a `dark:` variant on every element.
+ * Dark mode — override only the neutrals (frame, paper, cards, text, borders).
+ * The candy accents (pink / green / highlight / star / glow) and the fixed
+ * --ink are intentionally left untouched so buttons and stars stay bright.
  */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0d0c0b; /* frame: near-black behind the panel */
+    --background: #1a1714; /* the "paper" panel, now warm dark */
+    --surface: #232019; /* cards */
+    --surface-muted: #2c281f;
+    --foreground: #f3ece0; /* warm off-white ink */
+    --muted: #a89e8f;
+    --border: #39332b;
+    --brand: #ff86c4; /* lift the magenta accent so it reads on dark */
+    --brand-strong: #ff9fd0;
+    --brand-soft: #3a1f30;
+  }
+
+  .marker {
+    background-image: linear-gradient(120deg, var(--highlight), var(--highlight));
+    background-repeat: no-repeat;
+    background-size: 100% 52%;
+    background-position: 0 78%;
+    padding: 0 0.08em;
+    color: var(--brand-soft);
+  }
+}
+
 @theme inline {
+  --color-page: var(--page);
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
   --color-accent: var(--accent);
+  --color-pink: var(--pink);
+  --color-pink-2: var(--pink-2);
+  --color-green: var(--green);
+  --color-green-2: var(--green-2);
+  --color-highlight: var(--highlight);
+  --color-star: var(--star);
+  --color-glow: var(--glow);
   --font-sans: var(--font-geist-sans);
+  /* Headings use the same Geist face as body — the `font-display` utility is
+     kept so components don't need editing, it just points back at Geist. */
+  --font-display: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
+  background: var(--page);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Chunky rounded display face for headings and buttons. */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Five-point star used for the emoji "badges" (the ref's faces-on-stars). */
+.star {
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+}
+
+/* Green highlighter drawn behind the lower half of a word. */
+.marker {
+  background-image: linear-gradient(120deg, var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-size: 100% 72%;
+  background-position: 0 78%;
+  padding: 0 0.08em;
 }

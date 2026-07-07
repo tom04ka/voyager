@@ -1,7 +1,16 @@
 import type {
+  Destination,
   Itinerary,
   Step,
 } from '@/lib/types';
+
+export const destinations: Destination[] = [
+  { id: 'kyoto', name: 'Kyoto', country: 'Japan', emoji: '⛩️' },
+  { id: 'lisbon', name: 'Lisbon', country: 'Portugal', emoji: '🚋' },
+  { id: 'reykjavik', name: 'Reykjavík', country: 'Iceland', emoji: '🌌' },
+  { id: 'oaxaca', name: 'Oaxaca', country: 'Mexico', emoji: '🌶️' },
+  { id: 'bali', name: 'Bali', country: 'Indonesia', emoji: '🏝️' },
+];
 
 
 export const steps: Step[] = [

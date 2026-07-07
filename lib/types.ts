@@ -10,6 +10,14 @@ export interface Step {
   description: string;
 }
 
+/** A destination shown as an emoji star-badge on the landing page. */
+export interface Destination {
+  id: string;
+  name: string;
+  country: string;
+  emoji: string;
+}
+
 /** One block of time in a generated day plan. */
 export interface ItineraryActivity {
   time: string;

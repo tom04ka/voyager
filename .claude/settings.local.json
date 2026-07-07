@@ -1,7 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "Bash(break)"
+      "Bash(break)",
+      "Bash(ssh-add -l)",
+      "Bash(ssh -o StrictHostKeyChecking=no -o BatchMode=yes -T git@github.com)",
+      "Bash(npx tsc *)",
+      "Bash(/usr/bin/grep -v \"api/itinerary/route.ts\")",
+      "Bash(/usr/bin/head -20)",
+      "Bash(/usr/bin/head)",
+      "Bash(/usr/bin/curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/)",
+      "Bash(echo \"/ -> HTTP $\\(/usr/bin/curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/\\)\")",
+      "Bash(/usr/bin/grep -oE \"text-ink[^;}]*\\(color|var\\)[^;}]*\" /private/tmp/claude-501/-Users-tamaramoskaleva-dev-voyager/7495244a-95d9-46aa-b767-50787bea40f6/scratchpad/app.css)",
+      "Bash(/usr/bin/head -2)",
+      "Bash(/usr/bin/grep -oE \"\\\\.text-ink[^,{]*\\\\{[^}]*\\\\}\" /private/tmp/claude-501/-Users-tamaramoskaleva-dev-voyager/7495244a-95d9-46aa-b767-50787bea40f6/scratchpad/app.css)",
+      "Bash(/usr/bin/grep -iE \"claude|agents\")",
+      "Bash(/usr/bin/grep -niE \"claude|agents\" .gitignore)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(/usr/bin/head -12)"
     ]
   },
   "outputStyle": "Learning"
