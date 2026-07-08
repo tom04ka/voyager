@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { ItineraryView } from "@/components/itinerary/itinerary-view";
+import { PlanningLoader } from "@/components/plan/planning-loader";
 import { cn } from "@/lib/utils";
 import type { PlannerInput } from "@/lib/planner";
 import type { Itinerary } from "@/lib/types";
@@ -79,7 +80,14 @@ export function Planner() {
       <Container className="py-16">
         <div className="mx-auto max-w-3xl">
           <ItineraryView trip={trip} />
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => downloadItinerary(trip)}
+              className="font-display h-12 rounded-full px-6 font-semibold text-[#5b0f3f] shadow-[0_4px_0_#c893dd] transition-all [background-image:linear-gradient(180deg,#ffd4f5,#e3a8ff)] hover:-translate-y-0.5"
+            >
+              Download itinerary
+            </button>
             <button
               type="button"
               onClick={() => setTrip(null)}
@@ -92,6 +100,9 @@ export function Planner() {
       </Container>
     );
   }
+
+  // ── Loading view ─────────────────────────────────────────────────────────
+  if (loading) return <PlanningLoader />;
 
   // ── Form view ────────────────────────────────────────────────────────────
   return (
@@ -171,6 +182,37 @@ export function Planner() {
       </form>
     </Container>
   );
+}
+
+// Turn the itinerary into a readable text file and trigger a browser download —
+// no library needed: build a Blob, point a temporary <a> at it, click it.
+function downloadItinerary(trip: Itinerary) {
+  const lines = [
+    "VOYAGER ITINERARY",
+    trip.destination,
+    "",
+    trip.summary,
+    "",
+    `${trip.days.length} days · ${trip.travelers} travelers · ${trip.budget} budget`,
+  ];
+  for (const day of trip.days) {
+    lines.push("", `Day ${day.day} — ${day.title}`);
+    for (const a of day.activities) {
+      lines.push(`  ${a.time}  ${a.title}`, `          ${a.description}`);
+    }
+  }
+
+  const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  const slug = trip.destination
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  link.href = url;
+  link.download = `voyager-${slug || "itinerary"}.txt`;
+  link.click();
+  URL.revokeObjectURL(url)
 }
 
 function Field({
