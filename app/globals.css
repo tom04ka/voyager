@@ -8,7 +8,7 @@
  */
 :root {
   --page: #1e1b18; /* deep warm charcoal frame — dark, but softer than near-black */
-  --background: #f6f1e6; /* the cream "paper" */
+  --background: #f8f5ec; /* the cream "paper" */
   --surface: #fffdf7; /* cards on the paper */
   --surface-muted: #efe7d3;
   --foreground: #1c1712; /* warm near-black ink */
@@ -92,7 +92,7 @@
 }
 
 body {
-  background: var(--page);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
